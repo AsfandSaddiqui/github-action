@@ -17,7 +17,7 @@ Add Count
 style={{ marginBottom: '20px', display: 'block' }}
 onClick={() => setCount(prev => prev - 1)}
 >
-Sub Count
+Del Count
 </button>
 </div>
 );
