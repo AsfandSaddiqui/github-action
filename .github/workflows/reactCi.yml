@@ -23,5 +23,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: yarn --cwd ~/client ci
-    - run: yarn --cwd ~/client run lint
+    - run: yarn --cwd ~/client/ ci
+    - run: yarn --cwd ~/client/ run lint
