@@ -1,13 +1,12 @@
 name: ReactJs CI
 on:
+  pull_request:
+    branches: ["master"]
   push:
     branches: ["*/*"]
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run: 
-        working-directory: ./client
     strategy:
       matrix:
         node-version: [16.x]
