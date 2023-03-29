@@ -1,22 +1,30 @@
-name: ReactJs CI
+name: Server CI Pipeline
+
 on:
   pull_request:
     branches: ["master"]
   push:
     branches: ["*/*"]
+
 jobs:
-  build:
+  container-job:
     runs-on: ubuntu-latest
+    container: node:19
+    defaults:
+      run:
+        working-directory: client
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [19.x]
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-        cache-dependency-path: client/yarn.lock
-    - run: yarn ci
-    - run: yarn run lint
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: server/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
