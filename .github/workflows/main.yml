@@ -1,6 +1,8 @@
 name: Server CI Pipeline
 
 on:
+  pull_request:
+    branches: ["master"]
   push:
     branches: ["*/*"]
 
@@ -11,7 +13,6 @@ jobs:
     defaults:
       run:
         working-directory: client
-
     strategy:
       matrix:
         node-version: [19.x]
