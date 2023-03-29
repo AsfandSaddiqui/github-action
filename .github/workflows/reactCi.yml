@@ -11,7 +11,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    defaults:
+      run: 
+        working-directory: ./client
     strategy:
       matrix:
         node-version: [16.x]
@@ -22,6 +24,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: yarn --cwd ~/client/ ci
-    - run: yarn --cwd ~/client/ run lint
+        cache: 'yarn'
+    - run: yarn ci
+    - run: yarn run lint
